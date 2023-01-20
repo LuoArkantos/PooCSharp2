@@ -1,4 +1,5 @@
 ﻿using bytebank_ADM.Funcionarios;
+using bytebank_ADM.SistemaInterno;
 using bytebank_ADM.Utilitario;
 
 #region
@@ -29,7 +30,9 @@ using bytebank_ADM.Utilitario;
 //Console.WriteLine($"Salário com aumento do Pedro: {pedro.Salario}");
 //Console.WriteLine($"Salário com aumento da Roberta: {roberta.Salario}");
 #endregion
-CalcularBonificacao();
+//CalcularBonificacao();
+
+UsarSistema();
 void CalcularBonificacao()
 {
     GerenciadorDeBonificacao gerenciador = new GerenciadorDeBonificacao();
@@ -67,3 +70,19 @@ void CalcularBonificacao()
     Console.WriteLine("Total de bonificações: " + gerenciador.TotalDeBonificacao);
 }
 
+void UsarSistema()
+{
+    SistemaInterno sistema = new SistemaInterno();
+
+    Diretor zezo = new Diretor("035 335");
+    zezo.Nome = "Zezo Marques";
+    zezo.Senha = "123"; //Senha definida como correta
+
+    GerenteDeContas aline = new GerenteDeContas("0010101");
+    aline.Nome = "Aline Lima";
+    aline.Senha = "456"; //Senha definida como correta
+
+    sistema.Login(zezo, "123"); //atribuir obj diretor e senha.. 
+    sistema.Login(aline, "982"); // Se a senha não corresponder com a senha definida, o acesso é negado
+}
+   
